@@ -14,5 +14,5 @@ const patientLastNameText = "Last Name";
 
 // patient list screen
 const patientListTitle = "Patient List";
-const fetchPatientErrorText = "Failed to fetch patients";
+const fetchPatientErrorText = "Could not get patient lists at this time";
 const fetchPatientEmptyText = "Patients list is empty";

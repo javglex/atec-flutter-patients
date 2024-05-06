@@ -15,6 +15,7 @@ class PatientRepository {
 
   final PatientApi _patientApiClient;
   final PatientDatabaseService _databaseService;
+  List<Patient> cachedNetworkPatients = [];
 
   /// Fetches patients list from network and local DB
   /// After fetch, merges both results if they are successful
@@ -25,9 +26,20 @@ class PatientRepository {
       localPatients = await _databaseService.getPatients();
     }
     final networkPatients = await _patientApiClient.fetchPatients(pageLimit);
+    cachedNetworkPatients += networkPatients;
     final List<Patient> combinedPatients = [
       ...localPatients.reversed, // newest entry displayed first
       ...networkPatients
+    ];
+
+    return combinedPatients;
+  }
+
+  Future<List<Patient>> refreshPatients() async {
+    List<Patient> localPatients = await _databaseService.getPatients();
+    final List<Patient> combinedPatients = [
+      ...localPatients.reversed, // newest entry displayed first
+      ...cachedNetworkPatients
     ];
 
     return combinedPatients;

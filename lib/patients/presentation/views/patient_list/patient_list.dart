@@ -4,7 +4,7 @@ import 'package:flutter_alphatec_javier/patients/presentation/views/patient_list
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../strings.dart';
-import '../../bloc/patient_bloc.dart';
+import '../../bloc/patient_pagination_bloc.dart';
 import '../../widget/bottom_loader.dart';
 
 class PatientList extends StatefulWidget {
@@ -25,11 +25,16 @@ class _PatientListState extends State<PatientList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PatientBloc, PatientState>(
+    return BlocBuilder<PatientPaginationBloc, PatientListState>(
       builder: (context, state) {
         switch (state.status) {
           case PatientStatus.failure:
-            return const Center(child: Text(fetchPatientErrorText));
+            return Center(
+                child: Text(
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    fetchPatientErrorText
+                )
+            );
           case PatientStatus.success:
             if (state.patients.isEmpty) {
               return const Center(child: Text(fetchPatientEmptyText));
@@ -62,7 +67,7 @@ class _PatientListState extends State<PatientList> {
 
   // when we reach end of list, requests more patients from network (pagination)
   void _onScroll() {
-    if (_isBottom) context.read<PatientBloc>().add(PatientFetched());
+    if (_isBottom) context.read<PatientPaginationBloc>().add(PatientFetched());
   }
 
   // calculate the bottom of our scrollable list

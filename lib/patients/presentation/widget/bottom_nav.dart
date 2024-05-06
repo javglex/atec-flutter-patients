@@ -5,7 +5,8 @@ import 'package:flutter_alphatec_javier/patients/presentation/views/patient_list
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/patient_repository.dart';
-import '../bloc/patient_bloc.dart';
+import '../bloc/patient_pagination_bloc.dart';
+import '../bloc/patient_updates_bloc.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -50,10 +51,19 @@ class _BottomNavigation extends State<BottomNavigation> {
           });
         },
       ),
-      body: BlocProvider(
-        create: (_) => PatientBloc(
-            patientRepo: RepositoryProvider.of<PatientRepository>(context)
-        )..add(PatientFetched()), // fetch patients when this bloc is first created
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => PatientPaginationBloc(
+                patientRepo: RepositoryProvider.of<PatientRepository>(context)
+            )..add(PatientFetched()),
+          ),
+          BlocProvider(
+            create: (_) => PatientBloc(
+                patientRepo: RepositoryProvider.of<PatientRepository>(context)
+            ),
+          ),
+        ],
         child: Row(
           children: [
             Expanded(

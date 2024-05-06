@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../strings.dart';
 import '../../../data/patient_repository.dart';
-import '../../bloc/patient_bloc.dart';
+import '../../bloc/patient_pagination_bloc.dart';
 
 
 class PatientListPage extends StatelessWidget {

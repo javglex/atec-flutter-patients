@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/model/patient.dart';
-import '../../bloc/patient_bloc.dart';
+import '../../bloc/patient_pagination_bloc.dart';
+import '../../bloc/patient_updates_bloc.dart';
 
 class PatientRow extends StatelessWidget {
   final Patient patient;

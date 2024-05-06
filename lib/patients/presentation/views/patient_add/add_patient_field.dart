@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_alphatec_javier/strings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/patient_bloc.dart';
+import '../../bloc/patient_pagination_bloc.dart';
+import '../../bloc/patient_updates_bloc.dart';
 
 class AddPatientField extends StatefulWidget {
   const AddPatientField({super.key});
@@ -42,7 +43,7 @@ class _AddPatientFieldState extends State<AddPatientField> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PatientBloc, PatientState>(
+    return BlocListener<PatientBloc, PatientUpdateState>(
         listener: (context, state) {
           if (state.status == PatientStatus.failure) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -50,6 +51,7 @@ class _AddPatientFieldState extends State<AddPatientField> {
             );
           }
           if (state.status == PatientStatus.success) {
+            context.read<PatientPaginationBloc>().add(PatientRefresh());
             _showSuccessDialog(lastPatientAdded);
           }
         },

@@ -24,55 +24,40 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 }
 
 
-/// Bloc pertaining to our patient data.
+/// Bloc pertaining to our patient list data and pagination.
+///
 /// Acts as a middleman between our data and presentation layers (similar to MVVM architecture)
 /// [PatientEvent] tells bloc when to fetch more patients
 /// [PatientState] is emitted on presentation layer. includes patient data
-class PatientBloc extends Bloc<PatientEvent, PatientState> {
+class PatientPaginationBloc extends Bloc<PatientEvent, PatientListState> {
   final PatientRepository patientRepo;
 
-  PatientBloc({required this.patientRepo}) : super(const PatientState()) {
+  PatientPaginationBloc({required this.patientRepo}) : super(const PatientListState(status: PatientStatus.initial)) {
     on<PatientFetched>(
       _onPatientsFetched,
       transformer: throttleDroppable(throttleDuration),
     );
-    on<AddPatient>(
-      _onAddNewPatient
-    );
-    on<DeletePatient>(
-      _onDeletePatient
+    on<PatientRefresh>(
+      _onRefreshPatients
     );
   }
 
-  Future<void> _onDeletePatient(DeletePatient event, Emitter<PatientState> emit) async {
-    try {
-      patientRepo.deletePatient(event.id);
-    } catch (e) {
-      emit(state.copyWith(status: PatientStatus.failure));
+  Future<void> _onRefreshPatients(PatientRefresh event, Emitter<PatientListState> emit) async {
+    if (event.localOnly) {
+      try {
+        final patients = await patientRepo.refreshPatients();
+        return emit(state.copyWith(
+            status: PatientStatus.success,
+            patients: patients
+        ));
+      } catch (e) { // TODO: catch specific expected errors
+        log("network error $e");
+        emit(state.copyWith(status: PatientStatus.failure));
+      }
     }
   }
 
-  Future<void> _onAddNewPatient(AddPatient event, Emitter<PatientState> emit) async {
-    try {
-      patientRepo.addPatient(event.firstName, event.lastName);
-      Patient patient = Patient(
-        id: -1,
-        firstName: event.firstName,
-        lastName: event.lastName,
-        email: "", isUploaded: false
-      );
-      emit(state.copyWith(
-        status: PatientStatus.success,
-        patients: List.from([
-          patient
-        ])..addAll(state.patients)
-      ));
-    } catch (e) {
-      emit(state.copyWith(status: PatientStatus.failure));
-    }
-  }
-
-  Future<void> _onPatientsFetched(PatientFetched event, Emitter<PatientState> emit) async {
+  Future<void> _onPatientsFetched(PatientFetched event, Emitter<PatientListState> emit) async {
     if (state.hasReachedMax) return;
     try {
       // initial load
