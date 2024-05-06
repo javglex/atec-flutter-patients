@@ -24,11 +24,11 @@ Below are the currently supported features:
 * Success modal for patient added succesfully
 * Empty list if no patients found
 
-<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/68b0960d-e82a-4790-afb3-30031ab4f143" width="360">
-<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/acc22b08-dcd6-4baa-9303-6102948f7f49" width="360">
-<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/6adb8de3-5f42-40f7-8fc8-9604e6490f20" width="360">
-<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/a5d3214f-cfe7-4164-a3f0-4e695e3b0f8c" width="360">
-<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/318c62f0-a6a2-4dab-9d8f-59874c7e712f" width="360">
+<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/68b0960d-e82a-4790-afb3-30031ab4f143" width="240">
+<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/acc22b08-dcd6-4baa-9303-6102948f7f49" width="240">
+<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/6adb8de3-5f42-40f7-8fc8-9604e6490f20" width="240">
+<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/a5d3214f-cfe7-4164-a3f0-4e695e3b0f8c" width="240">
+<img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/318c62f0-a6a2-4dab-9d8f-59874c7e712f" width="240">
 
 ## Tech Stack (Dependencies)
 * **http** for network api requests
