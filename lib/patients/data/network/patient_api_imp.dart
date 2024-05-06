@@ -5,11 +5,16 @@ import 'package:http/http.dart';
 
 import '../../domain/model/patient.dart';
 
+/// Patient API to retrieve random patients from randomapi.com
+///
+/// Uses pseudo-pagination due to the api not seemingly behaving as expected
+/// when adding 'page' or 'results' queries.
 class PatientApiImpl implements PatientApi {
   final Client httpClient;
 
   PatientApiImpl({required this.httpClient});
 
+  /// returns random list of patients limited to int pageLimit
   @override
   Future<List<Patient>> fetchPatients(int pageLimit) async {
     final response = await httpClient.get(

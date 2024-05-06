@@ -39,6 +39,7 @@ Below are the currently supported features:
 * **bloc** for network api requests
 * **sqflite** for database
 * **equatable** for efficient object comparison
+* **mocktail** for unit testing
 
 Highlight folders:
 

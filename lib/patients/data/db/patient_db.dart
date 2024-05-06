@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../domain/model/patient.dart';
 
+/// Local database for storing serialized [Patient] objects
 class PatientDatabaseService {
   Database? _database;
 
@@ -16,7 +17,7 @@ class PatientDatabaseService {
         join(await getDatabasesPath(), 'patients_database.db'),
         onCreate: (db, version) {
         // Create patient table with first, last and email fields
-        // ID created automatically on insertion.
+        // patient ID created automatically on insertion.
         return db.execute(
           'CREATE TABLE patients(id INTEGER PRIMARY KEY AUTOINCREMENT, first TEXT, last TEXT, email TEXT)',
         );
@@ -25,6 +26,7 @@ class PatientDatabaseService {
     );
   }
 
+  /// Adds a new patient to the database. Email is ignored for this demo
   Future<void> addPatient(String name, String lastName) async {
 
     if (_database == null) {
@@ -43,6 +45,7 @@ class PatientDatabaseService {
     );
   }
 
+  /// Deletes a patient from the database by ID
   Future<void> deletePatient(int id) async {
 
     if (_database == null) {
@@ -57,6 +60,7 @@ class PatientDatabaseService {
   }
 
 
+  /// Retrieves a list of all patients in the database
   Future<List<Patient>> getPatients() async {
     final List<Patient>? patientList;
 
