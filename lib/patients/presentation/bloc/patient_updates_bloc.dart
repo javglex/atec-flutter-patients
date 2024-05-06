@@ -1,13 +1,9 @@
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_alphatec_javier/patients/presentation/bloc/patient_pagination_bloc.dart';
-import 'package:stream_transform/stream_transform.dart';
 
-import '../../data/patient_repository.dart';
 import '../../domain/model/patient.dart';
+import '../../domain/model/patient_repository.dart';
 
 /// Bloc for manipulating our patient data.
 ///

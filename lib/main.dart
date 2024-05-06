@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_alphatec_javier/patients/data/db/patient_db.dart';
-import 'package:flutter_alphatec_javier/patients/data/network/patient_api.dart';
+import 'package:flutter_alphatec_javier/patients/data/network/patient_api_imp.dart';
 import 'package:flutter_alphatec_javier/patients/data/patient_repository.dart';
+import 'package:flutter_alphatec_javier/patients/domain/model/patient_api.dart';
+import 'package:flutter_alphatec_javier/patients/domain/model/patient_repository.dart';
 import 'package:flutter_alphatec_javier/patients/presentation/widget/bottom_nav.dart';
 import 'package:flutter_alphatec_javier/simple_bloc_observer.dart';
 import 'package:flutter_alphatec_javier/strings.dart';
@@ -13,7 +15,7 @@ void main() {
   Bloc.observer = const SimpleBlocObserver();
   // not using a DI library. Create our own dependencies
   final patientDatabaseService = PatientDatabaseService();
-  final patientApi = PatientApi(httpClient: http.Client());
+  final patientApi = PatientApiImpl(httpClient: http.Client());
 
   runApp(
       MyApp(
@@ -54,7 +56,7 @@ class _AppState extends State<MyApp> {
   void initState() {
     super.initState();
     patientDatabaseService.initialize();
-    _patientRepository = PatientRepository(
+    _patientRepository = PatientRepositoryImpl(
         patientApiClient: patientApi,
         databaseService: patientDatabaseService
     );

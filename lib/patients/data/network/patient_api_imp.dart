@@ -1,14 +1,16 @@
 
 import 'dart:convert';
+import 'package:flutter_alphatec_javier/patients/domain/model/patient_api.dart';
 import 'package:http/http.dart';
 
 import '../../domain/model/patient.dart';
 
-class PatientApi {
+class PatientApiImpl implements PatientApi {
   final Client httpClient;
 
-  PatientApi({required this.httpClient});
+  PatientApiImpl({required this.httpClient});
 
+  @override
   Future<List<Patient>> fetchPatients(int pageLimit) async {
     final response = await httpClient.get(
       Uri.https(

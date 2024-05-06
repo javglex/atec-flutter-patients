@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_alphatec_javier/patients/presentation/views/patient_list/patient_list.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../strings.dart';
-import '../../../data/patient_repository.dart';
-import '../../bloc/patient_pagination_bloc.dart';
 
 
 class PatientListPage extends StatelessWidget {

@@ -6,6 +6,7 @@ Flutter application for ATEC code assesment.
 ## Getting Started
 Clone this repository (main branch) and follow these steps depending on
 your development environment. https://docs.flutter.dev/get-started/test-drive?tab=androidstudio
+
 Before running project make sure to run this command (creates platform specific files):
 `flutter create .`
 
@@ -25,6 +26,7 @@ Below are the currently supported features:
 * Text styling for all text styles.
 * Success modal for patient added succesfully
 * Empty list if no patients found
+* Simple repository test suite
 
 <img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/68b0960d-e82a-4790-afb3-30031ab4f143" width="240">
 <img src="https://github.com/javglex/atec-flutter-patients/assets/6698872/acc22b08-dcd6-4baa-9303-6102948f7f49" width="240">

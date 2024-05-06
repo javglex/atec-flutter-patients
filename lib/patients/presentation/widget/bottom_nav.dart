@@ -4,7 +4,7 @@ import 'package:flutter_alphatec_javier/patients/presentation/views/patient_add/
 import 'package:flutter_alphatec_javier/patients/presentation/views/patient_list/patient_list_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/patient_repository.dart';
+import '../../domain/model/patient_repository.dart';
 import '../bloc/patient_pagination_bloc.dart';
 import '../bloc/patient_updates_bloc.dart';
 

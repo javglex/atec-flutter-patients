@@ -5,8 +5,8 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:stream_transform/stream_transform.dart';
 
-import '../../data/patient_repository.dart';
 import '../../domain/model/patient.dart';
+import '../../domain/model/patient_repository.dart';
 
 part 'patient_event.dart';
 part 'patient_state.dart';
