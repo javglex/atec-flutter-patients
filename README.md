@@ -6,6 +6,8 @@ Flutter application for ATEC code assesment.
 ## Getting Started
 Clone this repository (main branch) and follow these steps depending on
 your development environment. https://docs.flutter.dev/get-started/test-drive?tab=androidstudio
+Before running project make sure to run this command (creates platform specific files):
+`flutter create .`
 
 ## Introduction
 Two screen app which allows user to add new patients or view existing ones. User can switch between
